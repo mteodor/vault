@@ -10,6 +10,7 @@ RUN mkdir /vault
 # download dependencies
 RUN apk --no-cache add \
       bash \
+      at \
       ca-certificates \
       wget
 
@@ -29,4 +30,4 @@ COPY ./config/vault-config.json /vault/config/vault-config.json
 EXPOSE 8100
 
 # run vault
-ENTRYPOINT ["vault"]
+ENTRYPOINT ["bash"]
