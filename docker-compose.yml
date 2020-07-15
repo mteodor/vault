@@ -1,0 +1,25 @@
+version: '3.6'
+
+
+
+services:
+  vault:
+    build:
+      context: ./vault
+      dockerfile: Dockerfile
+    ports:
+      - 8100:8100
+    volumes:
+      - ./vault/entrypoint.sh:/entrypoint.sh
+      - ./vault/config:/vault/config
+      - ./vault/policies:/vault/policies
+      - ./vault/data:/vault/data
+      - ./vault/logs:/vault/logs
+    environment:
+      VAULT_ADDR: ${VAULT_ADDR}
+      VAULT_UNSEAL_KEY_1: ${VAULT_UNSEAL_KEY_1}
+      VAULT_UNSEAL_KEY_2: ${VAULT_UNSEAL_KEY_2}
+      VAULT_UNSEAL_KEY_3: ${VAULT_UNSEAL_KEY_3}
+    command: server -config=/vault/config/vault-config.json
+    cap_add:
+      - IPC_LOCK
