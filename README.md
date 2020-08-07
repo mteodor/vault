@@ -12,7 +12,7 @@ docker-compose -f docker-compose.yml up -d --build
 
 Image is based on alpine but in addition there is a bash added.
 
-Than when the vault is started we need to to the initialision
+Than when the vault is started we need to perform the initialision
 From within a docker container 
 
 ```
