@@ -1,6 +1,8 @@
 version: '3.6'
 
-
+networks:
+  docker_mainflux-base-net:
+    external: true
 
 services:
   vault:
@@ -9,6 +11,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8100:8100
+    networks:
+      - docker_mainflux-base-net
     volumes:
       - ./vault/entrypoint.sh:/entrypoint.sh
       - ./vault/config:/vault/config
