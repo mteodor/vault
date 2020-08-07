@@ -3,23 +3,17 @@ set -euo pipefail
 
 export VAULT_TOKEN='s.bUPN41KMOEw7g6zZ96lfYzxk'
 export VAULT_ADDR='http://localhost:8100'
-export DOMAIN_NAME='mt-global.ml'
-export OU='Mirko Cloud'
-export ORG='Mirko Company'
+export DOMAIN_NAME='mainflux.com'
+export OU='Mainflux Cloud'
+export ORG='Mainflux Company'
 export COUNTRY='Serbia'
 export LOC='BG'
 export NAME='mainflux5'
 export ROLE_NAME='mainflux5'
 export MAINFLUX_DIR='../'
-#rm -rf data
-#mkdir data
+rm -rf data
+mkdir data
 
-# Create pki.
-# in vault.hcl 
-# # Work with pki secrets engine
-# path "pki*" {
-#  capabilities = [ "create", "read", "update", "delete", "list", "sudo" ]
-# }
 vault login ${VAULT_TOKEN}
 vault secrets enable -path pki_${NAME} pki
 vault secrets tune -max-lease-ttl=87600h pki_${NAME}

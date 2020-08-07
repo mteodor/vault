@@ -4,6 +4,14 @@ This is `vault` service deployment to be used with `Mainflux` for development pu
 
 How to start:
 
+Get the Mainflux code
+```
+git clone https://github.com/mainflux/mainlux
+cd mainflux
+git clone https://github.com/mteodor/vault
+cd vault
+```
+
 First we need to build the image:
 
 ```
@@ -47,6 +55,26 @@ Use 3 out of five keys presented and put it into .env file and than start the co
 `Vault` should be in unsealed state ( take a note that this is not recommended in terms of security, this is deployment for development)
 A real production deployment can use `Vault` auto unseal mode where vault gets unseal keys from some 3rd party KMS ( on AWS for example)
 
+Now edit the `set-pki.sh` script:
+
+```
+export VAULT_TOKEN='s.bUPN41KMOEw7g6zZ96lfYzxk'
+export VAULT_ADDR='http://localhost:8100'
+export DOMAIN_NAME='mainflux.com'
+export OU='Mainflux Cloud'
+export ORG='Mainflux Company'
+export COUNTRY='Serbia'
+export LOC='BG'
+export NAME='mainflux5'
+export ROLE_NAME='mainflux5'
+export MAINFLUX_DIR='../'
+```
+
+Execute script 
+```
+./set-pki.sh
+```
+Script will generate root certificate, intermediate certificate and HTTPS server certificate and copy it into the deployment directory.
 
 
 
